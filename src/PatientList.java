@@ -56,7 +56,7 @@ public class PatientList  {
     previous.next = current.next;
     System.out.println("Patient with ID "+ id+ " removed");
     }
-    public Patient findPatient(int id){   //"I couldn’t manage to return the message directly, so I printed it in the Main class
+    public Patient findPatient(int id){   //I couldn’t manage to return the message directly, so I printed it in the Main class
         Node current = head;
 
         while (current != null){

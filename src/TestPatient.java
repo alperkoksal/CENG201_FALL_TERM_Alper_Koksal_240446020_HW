@@ -1,12 +1,13 @@
-public class Main {
-    public static void main(String[] args) {
+public class TestPatient {
+        public static void main(String[] args) {
         PatientList patient1 = new PatientList();
 
-        Patient p1 = new Patient(123,"Fırat",5,22);
-        Patient p2 = new Patient(124,"Eren",8,21);
-        Patient p3 = new Patient(125,"Furkan",3,23);
-        Patient p4 = new Patient(126,"Gizem",4,30);
-        Patient p5 = new Patient(127,"Aynur",6,19);
+
+        Patient p1 = new Patient(990,"Hasan",5,22);
+        Patient p2 = new Patient(991,"Kemal",8,21);
+        Patient p3 = new Patient(992,"Efe",3,23);
+        Patient p4 = new Patient(993,"Babi",4,76);
+        Patient p5 = new Patient(994,"Fikret",6,19);
 
         patient1.addPatient(p1);
         patient1.addPatient(p2);
