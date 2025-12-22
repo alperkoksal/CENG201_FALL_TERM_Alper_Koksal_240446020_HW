@@ -1,63 +1,118 @@
 public class TreatmentQueue {
-    private class  Node{
-        TreatmentRequest data;
-        Node next;
+        private class  Node{
+            TreatmentRequest data;
+            Node next;
 
-        public Node(TreatmentRequest data) {
-            this.data = data;
-            this.next = null;
+            Node(TreatmentRequest data){
+                this.data = data;
+                this.next = null;
+
+            }
+
+
         }
-    }
+        private int acilSize;
+        private int normalSize;
+        private  Node normalFront , normalRear;
+        private Node acilFront, acilRear;
 
-    private Node front;
-    private Node rear;
-    private int size;
-
-    public TreatmentQueue(){
-        front = rear = null;
-        size =0;
-    }
-
-    public void enqueue(TreatmentRequest request){
-        Node newNode = new Node(request);
-
-        if(rear == null){
-            front =  newNode;
-            rear= newNode;
+        public TreatmentQueue(){
+            acilFront= acilRear = null;
+            normalFront =normalRear = null;
+            acilSize =0;
+            normalSize =0;
         }
-        else{
-            rear.next = newNode;
-            rear = newNode;
-        }
-        size++;
 
-    }
-    public TreatmentRequest dequeue(){
-        if (front == null){
+        public void enqueue(TreatmentRequest request){
+            Node newNode =new Node(request);
+
+            if ( request.priority){
+                if(acilRear ==null){
+                    acilFront=acilRear=newNode;
+                }
+                else{
+                    acilRear.next = newNode;
+                    acilRear = newNode;
+                }
+                acilSize++;
+
+            }
+            else{
+                if(normalRear==null){
+                    normalFront=normalRear=newNode;
+
+                }
+                else{
+                    normalRear.next=newNode;
+                    normalRear = newNode;
+                }
+                normalSize++;
+            }
+        }
+
+        public TreatmentRequest dequeue(){
+            if (acilFront != null){
+                TreatmentRequest removed= acilFront.data;
+                acilFront= acilFront.next;
+
+                if (acilFront==null){
+                    acilRear=null;
+                }
+                acilSize--;
+                return removed;
+            }
+            if (normalFront != null) {
+                TreatmentRequest removed = normalFront.data;
+                normalFront = normalFront.next;
+
+                if (normalFront == null) {
+                    normalRear = null;
+                }
+
+                normalSize--;
+                return removed;
+            }
+
             return null;
-        }
-        TreatmentRequest removed = front.data; // Burada chatgpt kullandım çünkü "front = front.next;
-        // " yapmaya çalıştığımda return edecek bir şey olmadığı için hata alıyorum Çözüm olarak değişkene atamamam gerekmiş
-        front = front.next;
 
-        if (front == null) {
-            rear = null;
         }
 
-        size--;
-        return removed;
+
+
+
+
+    public int acilSize() {
+        System.out.println("Acil size: ");
+        return acilSize;
     }
+    public int normalSize() {
+        System.out.println("Normal size: ");
+        return normalSize;
+    }
+    public int totalSize() {
+        System.out.println("Total size: ");
+        return acilSize + normalSize;
 
-    public int size() {
-        return size;
     }
 
 
     public void printQueue() {
-        Node temp = front;
+        Node temp = acilFront;
+        while (temp != null) {
+            System.out.println(temp.data);
+            temp = temp.next;
+        }
+        temp = normalFront;
         while (temp != null) {
             System.out.println(temp.data);
             temp = temp.next;
         }
     }
+
+
 }
+
+
+
+
+
