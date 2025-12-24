@@ -24,8 +24,12 @@ public class TestPatient {
         System.out.println(patient1.findPatient(127));
 
         System.out.println();
+        System.out.println("Before:  ");
         patient1.printList();
 
+        patient1.sortBySeverity();
+        System.out.println("After sorting:");
+        patient1.printList();
 
     }
 
